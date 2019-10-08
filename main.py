@@ -2,6 +2,7 @@
 #import scipy
 #import time
 import threading
+import os
 #import asyncio
 from image_match.goldberg import ImageSignature
 import requests
@@ -10,7 +11,7 @@ from elasticsearch import Elasticsearch
 from image_match.elasticsearch_driver import SignatureES
 settings = open('settings.txt').read().split("\n")
 owner_id = settings[0]
-access_token = settings[1]
+#access_token = settings[1]
 url = settings[2]
 results1 = open('urls.txt', 'w')
 off = 0
@@ -20,6 +21,7 @@ s = 0 #start
 e = 200 #end
 gis = ImageSignature()
 a = gis.generate_signature(url)
+access_token = os.environ.get('token1')
 token = '635777694:AAGxzjjjyWQLo82_CZ1YPU7CEt7kGnqFS6E'
 
 def send_message(chat_id, text):
@@ -113,19 +115,3 @@ if __name__ == "__main__":
         threading.Thread(target=th_f, args=(s, e)).start()
         s += 200
         e += 200
-
-''''
-    for index in range(len(link_list)//200):
-        x = threading.Thread(target=th_f, args=(s,e))
-        threads.append(x)
-        x.start()
-        s+=200
-        e+=200
-
-    for i in range(0,len(link_list)-1):
-        n = link_list[i]
-        b = gis.generate_signature(n)
-        raznica = gis.normalized_distance(a, b)
-        if raznica <0.4:
-            print(f'Возможно совпадение - {link_list[i]}')
-'''
