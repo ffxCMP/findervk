@@ -20,7 +20,11 @@ s = 0 #start
 e = 200 #end
 gis = ImageSignature()
 a = gis.generate_signature(url)
+token = '635777694:AAGxzjjjyWQLo82_CZ1YPU7CEt7kGnqFS6E'
 
+def send_message(chat_id, text):
+    url = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={text}'
+    a = requests.post(url)
 
 def th_f(start,end):
     for i in range(start,end):
@@ -30,8 +34,10 @@ def th_f(start,end):
             raznica = gis.normalized_distance(a, b)
             if raznica <0.4:
                 #print(f'Возможно совпадение - {link_list[i]}')
-                print('Возможно совпадение. Проверьте файл urls.txt')
-                print('Добавил ссылку в urls.txt')
+                print('Возможно совпадение. Отправил ссылку в телеграм')
+                chat_id=str(428290116)
+                message = link_list[i]
+                send_message(chat_id,f'Нашел эту картинку в вашей группе. Сравните ее с той, что вы вставляли в программу! {message}')
                 with open('urls.txt', 'a') as results:
                     results.write(link_list[i])
                     results.close()
@@ -98,7 +104,7 @@ if __name__ == "__main__":
     dlina = get_count()
     dlina = dlina//100
     print('Собираю все посты из группы...')
-    for i in range(0,dlina):
+    for i in range(0,2):
         get_posts(off)
 
     print('Ищу одинаковые или похожие картинки...')
