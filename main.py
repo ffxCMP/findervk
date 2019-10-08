@@ -37,7 +37,7 @@ def th_f(start,end):
             if raznica <0.4:
                 #print(f'Возможно совпадение - {link_list[i]}')
                 print('Возможно совпадение. Отправил ссылку в телеграм')
-                chat_id=str(428290116)
+                chat_id=str(221730817)
                 message = link_list[i]
                 send_message(chat_id,f'Нашел эту картинку в вашей группе. Сравните ее с той, что вы вставляли в программу! {message}')
                 with open('urls.txt', 'a') as results:
