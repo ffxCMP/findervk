@@ -105,8 +105,9 @@ if __name__ == "__main__":
     threads = list()
     dlina = get_count()
     dlina = dlina//100
+    print(f'Будем искать  {url}')
     print('Собираю все посты из группы...')
-    for i in range(0,dlina):
+    for i in range(0,2):
         get_posts(off)
 
     print('Ищу одинаковые или похожие картинки...')
