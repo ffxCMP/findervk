@@ -107,7 +107,7 @@ if __name__ == "__main__":
     dlina = dlina//100
     print(f'Будем искать  {url}')
     print('Собираю все посты из группы...')
-    for i in range(0,2):
+    for i in range(0,dlina):
         get_posts(off)
 
     print('Ищу одинаковые или похожие картинки...')
