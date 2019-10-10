@@ -1,6 +1,6 @@
 #import numpy
 #import scipy
-#import time
+import time
 import threading
 import os
 #import asyncio
@@ -31,11 +31,11 @@ def send_message(chat_id, text):
 def th_f(start,end):
     for i in range(start,end):
         try:
+            print(i)
             n = link_list[i]
             b = gis.generate_signature(n)
             raznica = gis.normalized_distance(a, b)
             if raznica <0.4:
-                #print(f'Возможно совпадение - {link_list[i]}')
                 print('Возможно совпадение. Отправил ссылку в телеграм')
                 chat_id=str(221730817)
                 message = link_list[i]
@@ -79,21 +79,10 @@ def get_posts(offset):
     for i in range(0,count):
         try:
             a = base['response']['items'][i]['attachments']
-          #  print('------')
-           # print('Атачмент')
-           # print(a)
-           # print('------')
-           # print('\n')
             att_count = len(base['response']['items'][i]['attachments'])
             for j in range(0,att_count):
                 try:
                     b = base['response']['items'][i]['attachments'][j]['photo']['sizes'][0]['url']
-                   # print('------')
-                    #print('Sizes')
-                   # print(b)
-                    #print('------')
-                    #print('\n')
-                    #sizes_count = len(b)
                     link_list.append(b)
                 except:
                     continue
@@ -116,3 +105,26 @@ if __name__ == "__main__":
         threading.Thread(target=th_f, args=(s, e)).start()
         s += 200
         e += 200
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
+    time.sleep(1000)
