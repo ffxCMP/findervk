@@ -22,7 +22,7 @@ e = 200 #end
 gis = ImageSignature()
 a = gis.generate_signature(url)
 access_token = os.environ.get('token1')
-token = '635777694:AAGxzjjjyWQLo82_CZ1YPU7CEt7kGnqFS6E'
+token = '635777694:AAHbmfWqecHTjz5R1--ZMOT3rRwuNexQknk'
 
 def send_message(chat_id, text):
     url = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={text}'
@@ -32,6 +32,13 @@ def th_f(start,end):
     for i in range(start,end):
         try:
             print(i)
+            last_msg = len(link_list)//200*200-2
+            print('Last  ', last_msg)
+            if i == last_msg:
+                #221730817
+                chat_id = str(221730817)
+                send_message(chat_id,f'Заканчиваю работу...')
+                print('Заканчиваю работу')
             n = link_list[i]
             b = gis.generate_signature(n)
             raznica = gis.normalized_distance(a, b)
@@ -39,13 +46,7 @@ def th_f(start,end):
                 print('Возможно совпадение. Отправил ссылку в телеграм')
                 chat_id=str(221730817)
                 message = link_list[i]
-                send_message(chat_id,f'Нашел эту картинку в вашей группе. Сравните ее с той, что вы вставляли в программу! {message}')
-                with open('urls.txt', 'a') as results:
-                    results.write(link_list[i])
-                    results.close()
-                with open('urls.txt', 'a') as results:
-                    results.write('\n')
-                    results.close()
+                send_message(chat_id, f'Нашел эту картинку в вашей группе. Сравните ее с той, что вы вставляли в программу! {message}')
         except:
             continue
 
@@ -98,6 +99,7 @@ if __name__ == "__main__":
     print('Собираю все посты из группы...')
     for i in range(0,dlina):
         get_posts(off)
+    print(len(link_list))
 
     print('Ищу одинаковые или похожие картинки...')
 
