@@ -31,9 +31,7 @@ def send_message(chat_id, text):
 def th_f(start,end):
     for i in range(start,end):
         try:
-            print(i)
             last_msg = len(link_list)//200*200-2
-            print('Last  ', last_msg)
             if i == last_msg:
                 #221730817
                 chat_id = str(221730817)
